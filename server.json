@@ -31,6 +31,14 @@
       "price": "11.50",
       "available": true,
       "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png"
+    },
+    {
+      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png",
+      "name": "OUTRA COMIDA",
+      "price": "120",
+      "description": "TESTE DE COMIDA",
+      "available": false,
+      "id": 5
     }
   ]
 }
