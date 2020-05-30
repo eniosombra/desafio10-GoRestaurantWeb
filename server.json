@@ -29,8 +29,8 @@
       "name": "Comida Teste 1",
       "price": "11.50",
       "description": "Comida caseira.",
-      "available": true,
-      "id": 4
+      "id": 4,
+      "available": false
     }
   ]
 }
