@@ -39,12 +39,14 @@ const Dashboard: React.FC = () => {
     food: Omit<IFoodPlate, 'id' | 'available'>,
   ): Promise<void> {
     try {
-      const newFood = Object.assign(food, { available: false });
-
-      const response = await api.post('/foods', newFood);
+      const response = await api.post('/foods', {
+        ...food,
+        available: false,
+      });
 
       setFoods(state => [...state, response.data]);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   }
@@ -52,12 +54,26 @@ const Dashboard: React.FC = () => {
   async function handleUpdateFood(
     food: Omit<IFoodPlate, 'id' | 'available'>,
   ): Promise<void> {
-    // TODO UPDATE A FOOD PLATE ON THE API
+    const { id } = editingFood;
+
+    const response = await api.put(`/foods/${id}`, food);
+
+    const newStateFood = foods.map(foodState => {
+      if (foodState.id === id) {
+        return { ...response.data };
+      }
+
+      return foodState;
+    });
+
+    setFoods(newStateFood);
   }
 
   async function handleDeleteFood(id: number): Promise<void> {
     await api.delete(`/foods/${id}`);
+
     const filteredFoods = foods.filter(food => food.id !== id);
+
     setFoods(filteredFoods);
   }
 
@@ -70,7 +86,8 @@ const Dashboard: React.FC = () => {
   }
 
   function handleEditFood(food: IFoodPlate): void {
-    // TODO SET THE CURRENT EDITING FOOD ID IN THE STATE
+    setEditingFood(food);
+    setEditModalOpen(true);
   }
 
   return (
