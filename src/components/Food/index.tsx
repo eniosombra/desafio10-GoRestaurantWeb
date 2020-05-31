@@ -17,14 +17,10 @@ interface IFoodPlate {
 interface IProps {
   food: IFoodPlate;
   handleDelete: (id: number) => {};
-  handleEditFood: (food: IFoodPlate) => void;
+  handleEdit: (food: IFoodPlate) => void;
 }
 
-const Food: React.FC<IProps> = ({
-  food,
-  handleDelete,
-  handleEditFood,
-}: IProps) => {
+const Food: React.FC<IProps> = ({ food, handleDelete, handleEdit }: IProps) => {
   const [isAvailable, setIsAvailable] = useState(food.available);
 
   async function toggleAvailable(): Promise<void> {
@@ -34,10 +30,6 @@ const Food: React.FC<IProps> = ({
     });
 
     setIsAvailable(!isAvailable);
-  }
-
-  function setEditingFood(): void {
-    handleEditFood(food);
   }
 
   return (
@@ -57,7 +49,7 @@ const Food: React.FC<IProps> = ({
           <button
             type="button"
             className="icon"
-            onClick={() => setEditingFood()}
+            onClick={() => handleEdit(food)}
             data-testid={`edit-food-${food.id}`}
           >
             <FiEdit3 size={20} />

@@ -26,11 +26,11 @@
     },
     {
       "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
-      "name": "Comida Teste 1",
-      "price": "11.50",
+      "name": "Comida Teste 11",
+      "price": "11.51",
       "description": "Comida caseira.",
       "id": 4,
-      "available": false
+      "available": true
     }
   ]
 }
